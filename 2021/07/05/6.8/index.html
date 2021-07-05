@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>站长推荐 | 站长推荐</title><meta name="keywords" content="c，java"><meta name="author" content="琪"><meta name="copyright" content="琪"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="#！&#x2F;bin&#x2F;bash 脚本编译的三种方式 1.bash  脚本名称 2.修改权限  [root@localhost ~]# chmod u+x 脚本名称[root@localhost ~]# .&#x2F;脚本名称 3.将我们的脚本直接复制到对应的环境变量中[root@localhost ~]# cp abc.sh &#x2F;usr&#x2F;local&#x2F;bin&#x2F; 双引号 取值输出 单引号 原样输出 \ 反斜杠     后">
+<meta property="og:type" content="article">
+<meta property="og:title" content="站长推荐">
+<meta property="og:url" content="http://example.com/2021/07/05/6.8/index.html">
+<meta property="og:site_name" content="站长推荐">
+<meta property="og:description" content="#！&#x2F;bin&#x2F;bash 脚本编译的三种方式 1.bash  脚本名称 2.修改权限  [root@localhost ~]# chmod u+x 脚本名称[root@localhost ~]# .&#x2F;脚本名称 3.将我们的脚本直接复制到对应的环境变量中[root@localhost ~]# cp abc.sh &#x2F;usr&#x2F;local&#x2F;bin&#x2F; 双引号 取值输出 单引号 原样输出 \ 反斜杠     后">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/07/05/zs2XGEZToKML9OU.jpg">
+<meta property="article:published_time" content="2021-07-05T03:26:15.863Z">
+<meta property="article:modified_time" content="2021-06-10T04:13:39.152Z">
+<meta property="article:author" content="琪">
+<meta property="article:tag" content="c，java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/07/05/zs2XGEZToKML9OU.jpg"><link rel="shortcut icon" href="/img/%E9%A5%BC%E5%B9%B2.png"><link rel="canonical" href="http://example.com/2021/07/05/6.8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}
+
+// https://stackoverflow.com/questions/16839698/jquery-getscript-alternative-in-native-javascript
+const getScript = url => new Promise((resolve, reject) => {
+  const script = document.createElement('script')
+  script.src = url
+  script.async = true
+  script.onerror = reject
+  script.onload = script.onreadystatechange = function() {
+    const loadState = this.readyState
+    if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+    script.onload = script.onreadystatechange = null
+    resolve()
+  }
+  document.head.appendChild(script)
+})</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-06-10 12:13:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=304495502"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://space.bilibili.com/2868899"><i class="fa-fw fas fa-video"></i><span> bilibili</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://pintia.cn/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://user.qzone.qq.com/2263082210?ADUIN=2263082210&amp;ADSESSION=1610253745&amp;ADTAG=CLIENT.QQ.5785_MyTip.0&amp;ADPUBNO=27077&amp;source=namecardhoverstar"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2021/07/05/zs2XGEZToKML9OU.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">站长推荐</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" target="_blank" rel="noopener" href="https://music.163.com/#/user/home?id=304495502"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" target="_blank" rel="noopener" href="https://space.bilibili.com/2868899"><i class="fa-fw fas fa-video"></i><span> bilibili</span></a></li></ul></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://pintia.cn/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" target="_blank" rel="noopener" href="https://user.qzone.qq.com/2263082210?ADUIN=2263082210&amp;ADSESSION=1610253745&amp;ADTAG=CLIENT.QQ.5785_MyTip.0&amp;ADPUBNO=27077&amp;source=namecardhoverstar"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-05T03:26:15.863Z" title="发表于 2021-07-05 11:26:15">2021-07-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-06-10T04:13:39.152Z" title="更新于 2021-06-10 12:13:39">2021-06-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>#！/bin/bash</p>
+<p>脚本编译的三种方式</p>
+<p>1.bash  脚本名称</p>
+<p>2.修改权限  [root@localhost ~]# chmod u+x 脚本名称<br>[root@localhost ~]# ./脚本名称</p>
+<p>3.将我们的脚本直接复制到对应的环境变量中[root@localhost ~]# cp abc.sh /usr/local/bin/</p>
+<p>双引号 取值输出</p>
+<p>单引号 原样输出</p>
+<p>\ 反斜杠     后面的字符原义输出</p>
+<p>for循环</p>
+<p>for 变量  in 表；do 命令1  命令2…done</p>
+<p>特殊代码</p>
+<p><img src="assets/6.8.images/image-20210608094853433.png" alt="image-20210608094853433"></p>
+<p>？  表示条件判断  0    表示正确  非0  表示错误</p>
+<p>0    表示指令本身</p>
+<p>1    表示脚本后面的第一个参数</p>
+<p>2   表示脚本后面的第二个参数</p>
+<p>*表示脚本后面的所有参数</p>
+<p>#表示脚本后面的几个参数</p>
+<p>输入姓名 性别 显示年龄 爱好</p>
+<p>输入姓名 显示 学号</p>
+<p>输入年龄 爱好 姓名 显示性别 学号</p>
+<p>输入爱好 显示error</p>
+<p>输入乱七八糟 显示error</p>
+<p>ansible 清单—–定义ansible所管理的主机</p>
+<p>一个主机可以属于多个组</p>
+<p>归档+gzip压缩</p>
+<p>红帽8当中</p>
+<p>netfilter()（防火墙的主要组件） ——iptables</p>
+<p>​                                                       ——firewalled(替换iptables)</p>
+<p>selinux</p>
+<p>更改selinux的执行模式</p>
+<p>控制selinux的标签</p>
+<p>实用布尔值进行调优</p>
+<p>分析和解决selinux问题</p>
+<p>sentenforce 0 关闭selinux</p>
+<p>selinux    假设apache用户被黑客掌握了 他要犯事只能犯在后台html目录下面不可能去影响带有别的标签的目录—-直白点黑客被限制住了</p>
+<p>selinux   三种模式</p>
+<p>enforceing —-强制模式—一切都要遵循访问控制规则，同时违反就日志</p>
+<p>permissive  ——仍然还是运行的但是他不强制执行访问控制规则了—-日志还是纪录的</p>
+<p>disabled—-selinux完全关闭</p>
+<p>sentenforce 0—–permissive—-临时修改</p>
+<p>sentenforce 1—-enforcing—-临时修改</p>
+<p>[root@master html]# vim /etc/sysconfig/selinux</p>
+<p>[root@master html]# vim /etc/selinux/config —selinux永久修改方式</p>
+<p>ls -Z  文件标签</p>
+<p>ps -Z  进程标签</p>
+<p>semanage port -l   端口标签</p>
+<p>chcon -t httpd_sys_content_t index.html改标签</p>
+<p>tail /var/log/messages</p>
+<p>/sbin/restorecon -v /var/www/html/index2.html </p>
+<p>nfs —–网络附加存储</p>
+<p>nfs（网络文件系统）是由linux和unix及类似的操作系统使用的互联网标准协议</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">琪</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/07/05/6.8/">http://example.com/2021/07/05/6.8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">站长推荐</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/07/05/zs2XGEZToKML9OU.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i> 打赏<div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/01/11/%E6%B1%82%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%BA%8F%E5%88%97%E5%89%8DN%E9%A1%B9%E5%92%8C/"><img class="next-cover" src="https://i.loli.net/2021/07/05/zs2XGEZToKML9OU.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info"></div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">琪</div><div class="author-info__description">分享一些心得与日记</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/auseb"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/auseb" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:2263082210@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/07/05/6.8/" title="无题"><img src="https://i.loli.net/2021/07/05/zs2XGEZToKML9OU.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/07/05/6.8/" title="无题">无题</a><time datetime="2021-07-05T03:26:15.863Z" title="发表于 2021-07-05 11:26:15">2021-07-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/01/11/%E6%B1%82%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%BA%8F%E5%88%97%E5%89%8DN%E9%A1%B9%E5%92%8C/" title="无题"><img src="https://i.loli.net/2021/07/05/zs2XGEZToKML9OU.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="无题"/></a><div class="content"><a class="title" href="/2021/01/11/%E6%B1%82%E5%B9%B3%E6%96%B9%E6%A0%B9%E5%BA%8F%E5%88%97%E5%89%8DN%E9%A1%B9%E5%92%8C/" title="无题">无题</a><time datetime="2021-01-11T14:40:36.024Z" title="发表于 2021-01-11 22:40:36">2021-01-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2020/12/18/%E6%B8%A9%E5%BA%A6%E8%BD%AC%E6%8D%A2/" title="温度转换"><img src="https://i.loli.net/2021/07/05/zs2XGEZToKML9OU.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="温度转换"/></a><div class="content"><a class="title" href="/2020/12/18/%E6%B8%A9%E5%BA%A6%E8%BD%AC%E6%8D%A2/" title="温度转换">温度转换</a><time datetime="2020-12-18T04:43:04.487Z" title="发表于 2020-12-18 12:43:04">2020-12-18</time></div></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/foot.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 琪</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">分享心得与日记~</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.spacingElementById('content-inner')
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.spacingElementById('content-inner')
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script></div></body></html>
